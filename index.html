@@ -19,6 +19,35 @@ body {
 }
 
 
+/* ── SECRET GLITCH ── */
+@keyframes secret-glitch {
+  0%    { transform: none; }
+  5%    { transform: translateX(-8px) skewX(-3deg); }
+  6%    { transform: translateX(8px); }
+  7%    { transform: translateX(-4px) skewX(2deg); }
+  8%    { transform: none; }
+  15%   { transform: translateX(6px) skewX(-5deg); }
+  16%   { transform: translateX(-6px); }
+  17%   { transform: skewX(4deg); }
+  18%   { transform: none; }
+  25%   { transform: translateX(-10px) skewX(-8deg); }
+  26%   { transform: translateX(10px) skewX(8deg); }
+  27%   { transform: none; }
+  50%   { transform: translateX(4px); }
+  51%   { transform: translateX(-4px); }
+  75%   { transform: skewX(-6deg) translateX(-8px); }
+  76%   { transform: skewX(6deg) translateX(8px); }
+  77%   { transform: none; }
+  90%   { transform: translateX(-12px) skewX(-10deg); }
+  91%   { transform: translateX(12px) skewX(10deg); }
+  92%   { transform: none; }
+  100%  { transform: none; }
+}
+body.secret-active {
+  animation: secret-glitch 0.3s steps(1) infinite;
+}
+
+
 
 /* ── NAV ── */
 nav {
@@ -73,7 +102,7 @@ nav {
   margin-bottom: 15px;
   word-break: break-all;
   position: relative;
-  animation: glitch-main 3s infinite linear alternate-reverse;
+  animation: glitch-main 2s infinite linear alternate-reverse;
 }
 
 .hero-name::before,
@@ -87,12 +116,12 @@ nav {
 }
 .hero-name::before {
   color: #00c8e0;
-  animation: glitch-before 2.0999999999999996s infinite linear alternate-reverse;
+  animation: glitch-before 1.4s infinite linear alternate-reverse;
   clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
 }
 .hero-name::after {
   color: #00e5ff;
-  animation: glitch-after 2.7s infinite linear alternate-reverse;
+  animation: glitch-after 1.8s infinite linear alternate-reverse;
   clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
 }
 @keyframes glitch-main {
@@ -124,7 +153,7 @@ nav {
   color: #c060a0;
   padding-left: 0;
   max-width: 500px;
-  line-height: 1.7;
+  line-height: 2.1;
 }
 .hero-meta {
   margin-top: 30px;
@@ -165,7 +194,7 @@ nav {
 
 /* ── ABOUT ── */
 .about-text {
-  font-size: 12px;
+  font-size: 11.5px;
   font-family: Georgia, 'Times New Roman', serif;
   line-height: 2.1;
   color: #c060a0;
@@ -314,6 +343,9 @@ footer {
 #tab-style .section-divider:not(.keep) { display: none !important; }
 #tab-style .clr-grid:not([style]) { display: none !important; }
 #tab-style .fs-grid { display: none !important; }
+
+/* hide style tab */
+button[onclick="showTab('style')"] { display: none !important; }
 </style>
 </head>
 <body>
@@ -327,13 +359,14 @@ footer {
     <li><a href="#about">ABOUT</a></li>
     <li><a href="#live">LIVE</a></li>
     <li><a href="#music">DISCOGRAPHY</a></li>
+    <li><a href="https://livfrail.official.ec/" target="_blank">SHOP</a></li>
     <li><a href="#chat">CHAT</a></li>
     <li><a href="#links">LINKS</a></li>
   </ul>
 </nav>
 
 <section class="hero">
-  <h1 class="hero-name" data-text="LIVFRAIL">LIVFRAIL</h1>
+  <h1 class="hero-name" data-text="LIVFRAIL" id="hero-name-secret" onclick="(function(){var el=document.getElementById('hero-name-secret');if(document.body.classList.contains('secret-active')){document.body.classList.remove('secret-active');window.open('https://www.dropbox.com/scl/fo/d7cj500kqk7r863xjfuxy/AM2i_L2DLuO_offzCRAAU4g?rlkey=81s1ip4bvd85dc724747uilu7&st=2ux9ko2u&dl=0','_blank');el._c=0;return;}el._c=(el._c||0)+1;clearTimeout(el._t);el._t=setTimeout(function(){el._c=0;},500);if(el._c>=7){document.body.classList.add('secret-active');el._c=0;}})()">LIVFRAIL</h1>
   <p class="hero-tagline">++live resisting++</p>
   <div class="hero-meta">
     <div class="hero-meta-item"><span class="lbl">Est.</span><span class="val">2023</span></div>
@@ -345,7 +378,7 @@ footer {
 <div id="about">
   <div class="section">
     <div class="section-label">++About++</div>
-    <p class="about-text">ただ一方的に消費されるような音楽にも、弱い人間を食い物にするような音楽にもなりたくない。一緒に抗って生きよう。</p>
+    <p class="about-text">2026年から本格的に活動開始<br><br>内省寄りで攻撃的<br><br>他人の痛みがわからない奴が嫌い<br><br>一方的に消費されるような音楽にも、<br>弱い人間を食い物にするような音楽にもなりたくない<br><br>一緒に抗って生きよう<br><br>まだ上手くやれる気はしないけど</p>
     
     <div class="about-members">
       <div class="about-members-label">++Members++</div>
@@ -378,7 +411,13 @@ footer {
           <span class="show-date">2026.4.9</span>
           <span class="show-venue">Shimokitazawa CLUB Que</span>
           <span class="show-location">Tokyo</span>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9AujNlCsNfoZvcN5VL1Ku0AYG4pJdyGco8Qo_rtgKQwPsYw/viewform?fbclid=PAZXh0bgNhZW0CMTEAAaaN2jU3lPXc6A8P-T3b2f2ByCHpVV_50TpjTM1OvZaQF7vG3_aGIRXPt98_aem_W8gV3MpZTHx7XRqWtPJKew&amp;pli=1" target="_blank" class="show-link">TICKET →</a>
+          <a href="https://forms.gle/A1mtpuDTjLe7Dsx38" target="_blank" class="show-link">TICKET →</a>
+        </li>
+        <li class="show-item">
+          <span class="show-date">2026.5.17</span>
+          <span class="show-venue">Nishieifuku JAM</span>
+          <span class="show-location">Tokyo</span>
+          <a href="https://forms.gle/A1mtpuDTjLe7Dsx38" target="_blank" class="show-link">TICKET →</a>
         </li></ul>
   </div>
 </div>
@@ -389,42 +428,32 @@ footer {
     <ul class="music-list">
         <li class="music-item">
           <div class="music-left">
-            <span class="music-title-txt">FINE</span>
+            <a href="https://music.apple.com/jp/album/fine/1882601037?i=1882601039&amp;ls" target="_blank" class="music-title-link">FINE</a>
+          </div>
+          <div class="music-right">
+            <span class="music-year">2026</span>
+            <span class="music-type">Digital Single</span>
+            <a href="https://music.apple.com/jp/album/fine/1882601037?i=1882601039&amp;ls" target="_blank" class="music-listen">LISTEN →</a>
+          </div>
+        </li>
+        <li class="music-item">
+          <div class="music-left">
+            <a href="https://music.apple.com/jp/album/777/1873862912?i=1873862913&amp;ls" target="_blank" class="music-title-link">777</a>
+          </div>
+          <div class="music-right">
+            <span class="music-year">2025</span>
+            <span class="music-type">Digital Single</span>
+            <a href="https://music.apple.com/jp/album/777/1873862912?i=1873862913&amp;ls" target="_blank" class="music-listen">LISTEN →</a>
+          </div>
+        </li>
+        <li class="music-item">
+          <div class="music-left">
+            <a href="https://music.apple.com/jp/album/falling/1738367765?i=1738367766&amp;ls" target="_blank" class="music-title-link">FALLING</a>
           </div>
           <div class="music-right">
             <span class="music-year">2024</span>
             <span class="music-type">Digital Single</span>
-            
-          </div>
-        </li>
-        <li class="music-item">
-          <div class="music-left">
-            <span class="music-title-txt">Brad Pitt</span>
-          </div>
-          <div class="music-right">
-            <span class="music-year">2024</span>
-            <span class="music-type">Digital Single</span>
-            
-          </div>
-        </li>
-        <li class="music-item">
-          <div class="music-left">
-            <span class="music-title-txt">777</span>
-          </div>
-          <div class="music-right">
-            <span class="music-year">2023</span>
-            <span class="music-type">Digital Single</span>
-            
-          </div>
-        </li>
-        <li class="music-item">
-          <div class="music-left">
-            <span class="music-title-txt">FALLING</span>
-          </div>
-          <div class="music-right">
-            <span class="music-year">2023</span>
-            <span class="music-type">Digital Single</span>
-            
+            <a href="https://music.apple.com/jp/album/falling/1738367765?i=1738367766&amp;ls" target="_blank" class="music-listen">LISTEN →</a>
           </div>
         </li></ul>
   </div>
@@ -432,7 +461,7 @@ footer {
 <div id="chat">
   <div class="section">
     <div class="section-label">++Chat++</div>
-    <p style="font-size:12px;font-family:Georgia,'Times New Roman',serif;color:#c060a0;line-height:2;margin-bottom:20px;">終演後の喫煙所みたいな場所<br>※音楽の話歓迎・モラルの無い書き込みはNG</p>
+    <p style="font-size:11.5px;font-family:Georgia,'Times New Roman',serif;color:#c060a0;line-height:2;margin-bottom:20px;">終演後の喫煙所みたいな場所・音楽の話歓迎</p>
     <iframe src="https://www3.cbox.ws/box/?boxid=3552506&boxtag=LVFR" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
   </div>
 </div>
@@ -441,11 +470,11 @@ footer {
   <div class="section">
     <div class="section-label">++Links++</div>
     <div class="lnk-grid"><a href="https://livfrail.bandcamp.com/"  target="_blank" class="lnk-btn">BANDCAMP</a>
+    <a href="https://on.soundcloud.com/wsdJZtGzAFxPTnwY6X" target="_blank" class="lnk-btn">SOUNDCLOUD</a>
+    <a href="https://youtube.com/@livfrail?si=Aw3ooX2PG1_ynGdA"   target="_blank" class="lnk-btn">YOUTUBE</a>
+    <a href="https://livfrail.official.ec/"      target="_blank" class="lnk-btn">SHOP</a>
     <a href="https://www.instagram.com/livfrail?igsh=MWRkZ202N2FjaHFoZg==" target="_blank" class="lnk-btn">INSTAGRAM</a>
     <a href="https://x.com/livfrail"   target="_blank" class="lnk-btn">X / TWITTER</a>
-    <a href="https://youtube.com/@livfrail?si=Aw3ooX2PG1_ynGdA"   target="_blank" class="lnk-btn">YOUTUBE</a>
-    <a href="https://on.soundcloud.com/wsdJZtGzAFxPTnwY6X" target="_blank" class="lnk-btn">SOUNDCLOUD</a>
-    <a href="https://livfrail.official.ec/" target="_blank" class="lnk-btn">OFFICIALSTORE</a>
     <a href="mailto:livfrail@gmail.com" class="lnk-btn">CONTACT</a></div>
   </div>
 </div>
